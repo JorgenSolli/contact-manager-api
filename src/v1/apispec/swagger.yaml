@@ -1,0 +1,239 @@
+openapi: "3.0.0"
+info:
+    version: 1.4.0
+    title: EcoOnline Contact Manager API
+    description: This is the EcoOnline Contact Manager API
+    x-logo:
+        url: 'https://deploy.ecoonline.com/images/ecoonline_logo_black.png'
+servers:
+    - url: https://app.ecoonline.com/api/contact-manager
+    - url: https://app-test.ecoonline.com/api/contact-manager
+    - url: https://beta.ecoonline.com/api/contact-manager
+    - url: http://localhost/api/contact-manager
+externalDocs:
+    description: GitHub repository
+    url: 'https://github.com/EcoOnline/contact-manager/'
+tags:
+    - name: Package
+      description: This package allows the customer to perform CRUD operations for contacts
+paths:
+  /:
+    get:
+      summary: List all contacts
+      security:
+        - bearerAuth: [] 
+      parameters:
+        - in: query
+          name: qs
+          description: A query string to search for contacts
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: page
+          description: The current page to fetch
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          description: The total records to fetch per page
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: sort_column
+          description: The column to sort by
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: sort_direction
+          description: The direction to sort the column
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: A list of the resource(s) is returned
+          content:
+            text/json:
+              schema:
+                type: object
+        '403':
+          description: User not authenticated
+    post:
+      summary: Creates a new contact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: first_name
+          description: 'The first name'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: last_name
+          description: 'The last name'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: email
+          description: 'A valid email address'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: phone_number
+          description: 'A unique phone number'
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: linkedin_url
+          description: 'The contacts LinkedIn URL'
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: country
+          description: 'The contacts country. Required with city'
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: city
+          description: 'The contacts city'
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: Contact created
+          content:
+            text/json:
+              schema:
+                type: object
+        '422':
+          description: Validation failed
+          content:
+            text/json:
+              schema:
+                type: object
+        '403':
+          description: User not authenticated
+  /{id}:
+    get:
+      summary: Gets a contact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: The contact ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Contact returned
+          content:
+            text/json:
+              schema:
+                type: object
+        '404':
+          description: Resource not found
+        '403':
+          description: User not authenticated
+    put:
+      summary: Updates an existing contact
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: The contact ID
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: first_name
+          description: 'The first name'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: last_name
+          description: 'The last name'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: email
+          description: 'A valid and unique email address'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: phone_number
+          description: 'A unique phone number'
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: linkedin_url
+          description: 'The contacts LinkedIn URL'
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: country
+          description: 'The contacts country. Required with city'
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: city
+          description: 'The contacts city'
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: Contact created
+        '422':
+          description: Validation failed
+          content:
+            text/json:
+              schema:
+                type: object
+        '404':
+          description: Resource not found
+        '403':
+          description: User not authenticated
+    delete:
+      summary: Deletes a contact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: The contact ID
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Contact deleted
+        '404':
+          description: Resource not found
+        '403':
+          description: User not authenticated
+components:
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Authorization
+      in: header

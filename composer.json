@@ -1,0 +1,48 @@
+{
+    "name": "ecoonline/contact-manager-api",
+    "type": "laravel-library",
+    "description": "A package starter",
+    "license": "proprietary",
+    "keywords": [
+        "EcoOnline",
+        "contact-manager",
+        "laravel"
+    ],
+    "homepage": "https://github.com/EcoOnline/contact-manager-api",
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "classmap": [
+            "src/v1/Http/Controllers"
+        ],
+        "psr-4": {
+            "EcoOnline\\ContactManagerApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EcoOnline\\ContactManagerApi\\Tests\\Feature\\": "tests/feature/",
+            "EcoOnline\\ContactManagerApi\\Tests\\Unit\\": "tests/unit/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "archive": {
+        "exclude": ["tests"]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EcoOnline\\ContactManagerApi\\ContactManagerApiServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "format": "php-cs-fixer fix"
+    }
+}
