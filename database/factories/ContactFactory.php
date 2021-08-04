@@ -26,7 +26,7 @@ class ContactFactory extends Factory
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail(),
-            'phone_number' => $this->faker->inique()->phone(),
+            'phone_number' => $this->faker->unique()->phone(),
             'linkedin_url' => $this->faker->url,
             'country' => $this->faker->country,
             'city' => $this->faker->city,
