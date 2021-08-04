@@ -29,7 +29,8 @@ class Contact extends Model
     /**
      * Queries for the contacts owned by the authenticated user
      */
-    public function scopeWhereOwns($query) {
+    public function scopeWhereOwns($query)
+    {
         return $query->where('user_id', auth()->id());
     }
 
