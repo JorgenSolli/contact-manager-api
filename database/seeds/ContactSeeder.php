@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use EcoOnline\ContactManager\v1\Models\Contact;
+use EcoOnline\ContactManagerApi\v1\Models\Contact;
 use EcoOnline\UserApi\v1\Domain\User\Models\User as UserModel;
 
 class ContactSeeder extends Seeder

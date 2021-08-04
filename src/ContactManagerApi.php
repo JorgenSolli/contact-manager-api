@@ -1,10 +1,10 @@
 <?php
 
-namespace EcoOnline\ContactManager;
+namespace EcoOnline\ContactManagerApi;
 
 /**
- * Class ContactManager
- * @package EcoOnline\ContactManager
+ * Class ContactManagerApi
+ * @package EcoOnline\ContactManagerApi
  */
 class ContactManagerApi
 {

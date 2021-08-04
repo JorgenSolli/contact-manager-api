@@ -1,9 +1,9 @@
 <?php
 
-namespace EcoOnline\ContactManager\Database\Factories;
+namespace EcoOnline\ContactManagerApi\Database\Factories;
 
 use Illuminate\Support\Str;
-use EcoOnline\ContactManager\v1\Models\Contact;
+use EcoOnline\ContactManagerApi\v1\Models\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContactFactory extends Factory
@@ -25,8 +25,8 @@ class ContactFactory extends Factory
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'phone_number' => $this->faker->inique()->phone,
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone_number' => $this->faker->inique()->phone(),
             'linkedin_url' => $this->faker->url,
             'country' => $this->faker->country,
             'city' => $this->faker->city,

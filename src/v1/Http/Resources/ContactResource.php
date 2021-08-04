@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronos\Http\Resources;
+namespace EcoOnline\ContactManagerApi\v1\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

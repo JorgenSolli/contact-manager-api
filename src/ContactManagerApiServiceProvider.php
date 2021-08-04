@@ -2,7 +2,6 @@
 
 namespace EcoOnline\ContactManagerApi;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +16,7 @@ class ContactManagerApiServiceProvider extends ServiceProvider
     public function boot(Router $router): void
     {
         // Middleware
-        $router->aliasMiddleware('contact-manager.middleware', \EcoOnline\ContactManagerApi\Http\Middleware\Middleware::class);
+        $router->aliasMiddleware('contact-manager.middleware', \EcoOnline\ContactManagerApi\v1\Http\Middleware\Middleware::class);
 
         // Load the API routes if enabled
         if (config('contact-manager.enable_api_routes')) {

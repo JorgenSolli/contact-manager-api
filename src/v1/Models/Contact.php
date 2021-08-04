@@ -1,6 +1,6 @@
 <?php
 
-namespace EcoOnline\ContactManager\v1\Models;
+namespace EcoOnline\ContactManagerApi\v1\Models;
 
 use EcoOnline\UserApi\v1\Domain\User\Models\User as UserModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -42,12 +42,12 @@ class Contact extends Model
             $qs = $request->get('qs');
 
             return $query->where('email', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('first_name', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('phone_number', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('linkedin_url', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('country', 'LIKE', '%' . $qs . '%')
-                    ->orWhere('city', 'LIKE', '%' . $qs . '%');
+                ->orWhere('first_name', 'LIKE', '%' . $qs . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $qs . '%')
+                ->orWhere('phone_number', 'LIKE', '%' . $qs . '%')
+                ->orWhere('linkedin_url', 'LIKE', '%' . $qs . '%')
+                ->orWhere('country', 'LIKE', '%' . $qs . '%')
+                ->orWhere('city', 'LIKE', '%' . $qs . '%');
         }
 
         return $query;

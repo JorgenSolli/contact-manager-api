@@ -32,9 +32,9 @@ return new class extends Migration {
             });
         } catch (\Exception $e) {
             (new ConsoleOutput)->writeln(
-                '<error>[ContactManager API] Migration failed: ' . $e->getMessage() . '</error>'
+                '<error>[ContactManagerApi API] Migration failed: ' . $e->getMessage() . '</error>'
             );
-            Log::emergency('[ContactManager API] Migration failed: ' . $e->getMessage());
+            Log::emergency('[ContactManagerApi API] Migration failed: ' . $e->getMessage());
         }
     }
 

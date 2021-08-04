@@ -1,6 +1,6 @@
 <?php
 
-namespace EcoOnline\EcoPackage\Http\Middleware;
+namespace EcoOnline\ContactManagerApi\v1\Http\Middleware;
 
 use App;
 use Closure;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 /**
  * Class Middleware
  *
- * @package EcoOnline\EcoPackage
+ * @package EcoOnline\ContactManagerApi
  */
 class Middleware
 {

@@ -3,27 +3,27 @@
 namespace EcoOnline\EcoPackage\v1\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use EcoOnline\EcoPackage\ContactManager;
+use EcoOnline\ContactManagerApi\ContactManagerApi;
 
 /**
  * Class ApiSpecController
- * @package EcoOnline\ContactManager
+ * @package EcoOnline\ContactManagerApi
  */
 class ApiSpecController extends Controller
 {
     /**
-     * @var ContactManager
+     * @var ContactManagerApi
      */
-    protected $contactManager;
+    protected $ContactManagerApi;
 
     /**
      * ApiSpecController constructor.
      *
-     * @param ContactManager $contactManager
+     * @param ContactManagerApi $ContactManagerApi
      */
-    public function __construct(ContactManager $contactManager)
+    public function __construct(ContactManagerApi $ContactManagerApi)
     {
-        $this->contactManager = $contactManager;
+        $this->ContactManagerApi = $ContactManagerApi;
     }
 
     /**
@@ -33,6 +33,6 @@ class ApiSpecController extends Controller
      */
     public function index()
     {
-        return $this->contactManager->showApiSpec();
+        return $this->ContactManagerApi->showApiSpec();
     }
 }

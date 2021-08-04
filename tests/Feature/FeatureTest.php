@@ -1,6 +1,6 @@
 <?php
 
-namespace EcoOnline\EcoPackage\Tests\Feature;
+namespace EcoOnline\ContactManagerApi\Tests\Feature;
 
 use Tests\TestCase;
 

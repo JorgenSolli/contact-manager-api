@@ -1,12 +1,12 @@
 <?php
 
-namespace EcoOnline\EcoPackage\v1\Http\Controllers;
+namespace EcoOnline\ContactManagerApi\v1\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Kronos\Http\Resources\ContactResource;
-use EcoOnline\ContactManager\v1\Models\Contact;
-use EcoOnline\EcoPackage\v1\Http\Requests\ContactRequest;
+use EcoOnline\ContactManagerApi\v1\Models\Contact;
+use EcoOnline\ContactManagerApi\v1\Http\Requests\ContactRequest;
+use EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource;
 
 class ContactController extends Controller
 {
@@ -14,11 +14,11 @@ class ContactController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
     {
-        $contacts = Contact::whereOwner()
+        $contacts = Contact::whereOwns()
             ->search($request->get('qs'))
             ->sort($request)
             ->paginate($request->get('limit'));
@@ -30,7 +30,7 @@ class ContactController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  ContactRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
      */
     public function store(ContactRequest $request)
     {
@@ -44,7 +44,7 @@ class ContactController extends Controller
      * Display the specified resource.
      *
      * @param  Contact $contact
-     * @return \Illuminate\Http\Response
+     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
      */
     public function show(Contact $contact)
     {
@@ -56,11 +56,11 @@ class ContactController extends Controller
      *
      * @param  ContactRequest $request
      * @param  Contact $contact
-     * @return \Illuminate\Http\Response
+     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
      */
     public function update(ContactRequest $request, Contact $contact)
     {
-        $contact->update($request->get());
+        $contact->update($request->all());
 
         return new ContactResource($contact);
     }
