@@ -1,6 +1,6 @@
 <?php
 
-namespace EcoOnline\EcoPackage\v1\Http\Controllers;
+namespace EcoOnline\ContactManagerApi\v1\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use EcoOnline\ContactManagerApi\ContactManagerApi;

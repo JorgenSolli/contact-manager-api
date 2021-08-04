@@ -6,6 +6,22 @@ use EcoOnline\UserApi\v1\Domain\User\Models\User as UserModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @package EcoOnline\ContactManagerApi
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property string $phone_number
+ * @property string $linkedin_url
+ * @property string $country
+ * @property string $city
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
+
 class Contact extends Model
 {
     use HasFactory;

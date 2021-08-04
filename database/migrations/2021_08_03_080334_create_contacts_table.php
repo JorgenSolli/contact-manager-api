@@ -17,7 +17,6 @@ return new class extends Migration
         try {
             Schema::create('contacts', function (Blueprint $table) {
                 $table->id();
-                // I make the assumption that the customers are \Models\User
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')
                     ->references('id')->on('common.usr')

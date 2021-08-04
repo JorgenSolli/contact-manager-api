@@ -34,8 +34,9 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
-        // The "contacts" relation  need to exist
-        $contact = auth()->user()->contacts()->create($request->all());
+        /** @var \EcoOnline\ContactManagerApi\v1\Models\User */
+        $user = auth()->user();
+        $contact = $user->contacts()->create($request->all());
 
         return new ContactResource($contact);
     }
@@ -76,6 +77,6 @@ class ContactController extends Controller
     {
         $contact->delete();
 
-        return response(200);
+        return response();
     }
 }

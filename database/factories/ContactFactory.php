@@ -2,7 +2,6 @@
 
 namespace EcoOnline\ContactManagerApi\Database\Factories;
 
-use Illuminate\Support\Str;
 use EcoOnline\ContactManagerApi\v1\Models\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
