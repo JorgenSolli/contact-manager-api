@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -19,7 +20,7 @@ return new class extends Migration {
                 // I make the assumption that the customers are \Models\User
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')
-                    ->references('id')->on('users')
+                    ->references('id')->on('common.usr')
                     ->onDelete('CASCADE');
                 $table->string('first_name');
                 $table->string('last_name');
