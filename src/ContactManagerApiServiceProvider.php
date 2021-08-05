@@ -2,6 +2,8 @@
 
 namespace EcoOnline\ContactManagerApi;
 
+use EcoOnline\ContactManagerApi\v1\Models\User;
+use EcoOnline\ContactManagerApi\v1\Observers\UserObserver;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +17,9 @@ class ContactManagerApiServiceProvider extends ServiceProvider
      */
     public function boot(Router $router): void
     {
+        // Observers
+        User::observe(UserObserver::class);
+
         // Middleware
         $router->aliasMiddleware('contact-manager.middleware', \EcoOnline\ContactManagerApi\v1\Http\Middleware\Middleware::class);
 
