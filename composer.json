@@ -16,7 +16,9 @@
             "src/v1/Http/Controllers"
         ],
         "psr-4": {
-            "EcoOnline\\ContactManagerApi\\": "src"
+            "EcoOnline\\ContactManagerApi\\": "src",
+            "EcoOnline\\ContactManagerApi\\Database\\Factories\\": "database/factories/",
+            "EcoOnline\\ContactManagerApi\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

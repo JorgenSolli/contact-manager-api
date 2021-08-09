@@ -3,8 +3,10 @@
 namespace EcoOnline\ContactManagerApi\v1\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use EcoOnline\ContactManagerApi\v1\Models\Contact;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use EcoOnline\ContactManagerApi\v1\Http\Requests\ContactRequest;
 use EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource;
 
@@ -13,10 +15,10 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @param  Request $request
+     * @return AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index(Request $request): AnonymousResourceCollection
     {
         $contacts = Contact::whereOwns()
             ->search($request->get('qs'))
@@ -30,9 +32,9 @@ class ContactController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  ContactRequest $request
-     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
+     * @return ContactResource
      */
-    public function store(ContactRequest $request)
+    public function store(ContactRequest $request): ContactResource
     {
         /** @var \EcoOnline\ContactManagerApi\v1\Models\User */
         $user = auth()->user();
@@ -45,9 +47,10 @@ class ContactController extends Controller
      * Display the specified resource.
      *
      * @param  Contact $contact
-     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
+     * @param  ContactRequest $request
+     * @return ContactResource
      */
-    public function show(Contact $contact)
+    public function show(Contact $contact): ContactResource
     {
         return new ContactResource($contact);
     }
@@ -57,9 +60,9 @@ class ContactController extends Controller
      *
      * @param  ContactRequest $request
      * @param  Contact $contact
-     * @return \EcoOnline\ContactManagerApi\v1\Http\Resources\ContactResource
+     * @return ContactResource
      */
-    public function update(ContactRequest $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact): ContactResource
     {
         $contact->update($request->all());
 
@@ -69,14 +72,12 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param ContactRequest $request
      * @param  Contact $contact
-     * @return \Illuminate\Http\Response
+     * @param  ContactRequest $request
+     * @return Response
      */
-    public function destroy(ContactRequest $request, Contact $contact)
+    public function destroy(Contact $contact)
     {
-        $contact->delete();
-
-        return response();
+        return $contact->delete();
     }
 }

@@ -4,25 +4,9 @@ namespace EcoOnline\ContactManagerApi\v1\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use EcoOnline\ContactManagerApi\v1\Models\Contact;
 
 class ContactRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        $contact = Contact::find($this->route('contact'));
-        if ($contact) {
-            return $contact->user_id == auth()->id();
-        }
-
-        return (bool) auth();
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -76,13 +60,8 @@ class ContactRequest extends FormRequest
                     }),
                 ];
                 break;
-
-                // No validation for deleting a resource, but we still want to authorize the request.
-            case 'DELETE':
-                return [];
-
             default:
-                break;
+                return [];
         }
 
         return $rules;

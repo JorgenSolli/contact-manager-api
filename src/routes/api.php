@@ -1,6 +1,8 @@
 <?php
 
 use EcoOnline\ContactManagerApi\v1\Http\Controllers\ContactController;
+use EcoOnline\ContactManagerApi\v1\Http\Middleware\EnsureUserOwnsContact;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,10 +11,9 @@ use EcoOnline\ContactManagerApi\v1\Http\Controllers\ContactController;
 |
 */
 
-// Routes
 Route::group([
-    'prefix' => 'api/contact-manager',
-    'middleware' => 'contact-manager.middleware'
+    'prefix' => 'api/contact-manager/v1/',
+    'middleware' => ['eco.auth', SubstituteBindings::class, EnsureUserOwnsContact::class]
 ], function () {
     Route::get('', [ContactController::class, 'index']);
     Route::put('{contact}', [ContactController::class, 'store']);

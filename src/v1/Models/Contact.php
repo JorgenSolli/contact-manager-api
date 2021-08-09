@@ -2,6 +2,7 @@
 
 namespace EcoOnline\ContactManagerApi\v1\Models;
 
+use EcoOnline\ContactManagerApi\Database\Factories\ContactFactory;
 use EcoOnline\UserApi\v1\Domain\User\Models\User as UserModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,8 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
+    protected $table = "public.contacts";
 
     protected $fillable = [
         'user_id',
@@ -53,18 +56,16 @@ class Contact extends Model
     /**
      * Filters the query based on the given querystring
      */
-    public function scopeSearch($query, $request)
+    public function scopeSearch($query, $queryString = null)
     {
-        if ($request->has('qs')) {
-            $qs = $request->get('qs');
-
-            return $query->where('email', 'LIKE', '%' . $qs . '%')
-                ->orWhere('first_name', 'LIKE', '%' . $qs . '%')
-                ->orWhere('last_name', 'LIKE', '%' . $qs . '%')
-                ->orWhere('phone_number', 'LIKE', '%' . $qs . '%')
-                ->orWhere('linkedin_url', 'LIKE', '%' . $qs . '%')
-                ->orWhere('country', 'LIKE', '%' . $qs . '%')
-                ->orWhere('city', 'LIKE', '%' . $qs . '%');
+        if ($queryString) {
+            return $query->where('email', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('first_name', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('phone_number', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('linkedin_url', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('country', 'LIKE', '%' . $queryString . '%')
+                ->orWhere('city', 'LIKE', '%' . $queryString . '%');
         }
 
         return $query;
@@ -80,5 +81,15 @@ class Contact extends Model
         }
 
         return $query;
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return ContactFactory::new();
     }
 }
