@@ -3,7 +3,6 @@
 namespace EcoOnline\ContactManagerApi\v1\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use EcoOnline\ContactManagerApi\v1\Models\Contact;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -47,7 +46,6 @@ class ContactController extends Controller
      * Display the specified resource.
      *
      * @param  Contact $contact
-     * @param  ContactRequest $request
      * @return ContactResource
      */
     public function show(Contact $contact): ContactResource
@@ -73,11 +71,12 @@ class ContactController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Contact $contact
-     * @param  ContactRequest $request
-     * @return Response
+     * @return \Illuminate\Contracts\Routing\ResponseFactory.
      */
     public function destroy(Contact $contact)
     {
-        return $contact->delete();
+        $contact->delete();
+
+        return response();
     }
 }
